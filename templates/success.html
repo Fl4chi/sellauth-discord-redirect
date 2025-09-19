@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A-Amazing Store — Pagamento</title>
+  <link rel="icon" href="/static/logo.png">
+  <link rel="stylesheet" href="/static/style.css" />
+  <!-- Meta refresh (10s) to Discord invite -->
+  <meta http-equiv="refresh" content="{{ auto_redirect_seconds }};url={{ discord_invite }}">
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="card-header">
+        <img class="logo" src="/static/logo.png" alt="Amazing Store logo" />
+        <h1 class="title">A-Amazing Store</h1>
+      </div>
+
+      <div class="badge-line">
+        <span class="status-dot">🟢</span>
+        <span class="status-text">Pagamento in corso...</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Fattura:</span>
+        <span class="tag">{{ invoice_id }}</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="{{ discord_invite }}" target="_blank" rel="noopener">Apri subito Discord</a>
+        <button class="btn ghost" id="copy-btn" data-link="{{ discord_invite }}">Copia Link</button>
+      </div>
+
+      <div class="message">
+        <p>Se sei arrivato qui, e al nostro sistema risulta <strong>🟢 Pagamento Riuscito!</strong> puoi entrare sul nostro Discord <em>(tra {{ auto_redirect_seconds }} secondi verrai automaticamente reindirizzato)</em>, e apri un <strong>🎫 Ticket Purchase</strong> e un membro dello Staff appena possibile ti fornirà il prodotto da te acquistato.</p>
+        <p>Qualora dovessi avere qualsiasi problema durante l'acquisto ti invitiamo a unirti sul nostro Discord e aprire <strong>🎫 Ticket Support</strong> o <strong>CEO</strong>; lo Staff ti fornirà assistenza.</p>
+        <p>Ti ringraziamo per aver scelto <strong>A-Amazing Store</strong>!</p>
+      </div>
+
+      <div class="pills">
+        <div class="pill"><span class="icon">🔒</span> Pagamento protetto</div>
+        <div class="pill"><span class="icon">🛟</span> Supporto 24/7</div>
+        <div class="pill"><span class="icon">🚚</span> Consegna istantanea</div>
+      </div>
+
+      <div class="footer-made">
+        Made by <a href="https://discord.com/users/864195186471993355" target="_blank" rel="noopener">Flachi</a>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const btn = document.getElementById('copy-btn');
+  btn?.addEventListener('click', async () => {
+    const link = btn.getAttribute('data-link');
+    try {
+      await navigator.clipboard.writeText(link);
+      btn.textContent = 'Copiato!';
+      setTimeout(() => btn.textContent = 'Copia Link', 1500);
+    } catch (e) {
+      alert('Copia non riuscita. Link: ' + link);
+    }
+  });
+</script>
+</body>
+</html>
